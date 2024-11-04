@@ -34,7 +34,7 @@ print("\nNote: Input data should be in percent format (e.g. 5.0 for 5%)")
 try:
     base_dir = os.path.dirname(os.path.abspath(__file__))
     bonds = read_to_list(
-        os.path.join(base_dir, "data", "10-yr_TBond_returns_1926-2013_pct.txt"),
+        os.path.join(base_dir, "data", "10yr_TBond_returns_1926-2013_pct.txt"),
     )
     stocks = read_to_list(
         os.path.join(base_dir, "data", "SP500_returns_1926-2013_pct.txt"),

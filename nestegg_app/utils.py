@@ -80,6 +80,61 @@ while invest_type not in investment_type_args:
 """
 Get user input for starting value of investment
 """
-start_value = default_input("Enter starting value of investment: \n", "10000")
+start_value = default_input(
+    "Enter starting value of investment: \n",
+    "10000",
+)
 while not start_value.isdigit():
     start_value = input("Invalid input. Enter starting value of investment: ")
+
+"""
+Get user input for annual pre-tax withdrawal
+"""
+withdrawal = default_input(
+    "Enter annual pre-tax withdrawal (today's $): \n",
+    "10000",
+)
+while not withdrawal.isdigit():
+    withdrawal = input("Invalid input. Enter annual pre-tax withdrawal: ")
+
+"""
+Get user input for min number of years in retirement
+"""
+min_years = default_input(
+    "Enter minimum years in retirement: \n",
+    "10",
+)
+while not min_years.isdigit():
+    min_years = input("Invalid input. Enter minimum years in retirement: ")
+
+"""
+Get user input for most likely number of years in retirement
+"""
+most_likely_years = default_input(
+    "Enter most likely years in retirement: \n",
+    "25",
+)
+while not most_likely_years.isdigit():
+    most_likely_years = input(
+        "Invalid input. Enter most likely years in retirement: ",
+    )
+
+"""
+Get user input for max number of years in retirement
+"""
+max_years = default_input(
+    "Enter maximum years in retirement: \n",
+    "40",
+)
+while not max_years.isdigit():
+    max_years = input("Invalid input. Enter maximum years in retirement: ")
+
+"""
+Get user input for number of cases to run
+"""
+num_cases = default_input(
+    "Enter number of cases to run: \n",
+    "50000",
+)
+while not num_cases.isdigit():
+    num_cases = input("Invalid input. Enter number of cases to run: ")

@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 
 
 def read_to_list(file_name):
-    # Open a file of data in percent, convert to decimal and return a list
     with open(file_name) as in_file:
         lines = [float(line.strip()) for line in in_file]
         decimal = [round(line / 100, 5) for line in lines]
@@ -17,7 +16,6 @@ def read_to_list(file_name):
 
 
 def default_input(prompt, default=None):
-    # Allow use of default values in input
     prompt = "{} [{}]: ".format(prompt, default)
     response = input(prompt)
     if not response and default:
@@ -72,7 +70,8 @@ print("Press ENTER to take the default value in brackets\n")
 Get user input for investment type
 """
 invest_type = default_input(
-    "Enter investment type: (stocks, bonds, sb_blend, sbc_blend: \n", "bonds"
+    "Enter investment type: (stocks, bonds, sb_blend, sbc_blend: \n",
+    "sbc_blend",
 ).lower()
 while invest_type not in investment_type_args:
     invest_type = input("Invalid input. Enter investment type: ").lower()
@@ -235,7 +234,8 @@ def main():
     odds = bankrupt_prob(outcome, bankrupt_count)
     plotdata = outcome[:3000]
     plt.figure(
-        "Outcome by Case (showing first {} runs)".format(len(plotdata)), figsize=(16, 5)
+        "Outcome by Case (showing first {} runs)".format(len(plotdata)),
+        figsize=(16, 5),
     )
     index = [i + 1 for i in range(len(plotdata))]
     plt.bar(index, plotdata, color="black")

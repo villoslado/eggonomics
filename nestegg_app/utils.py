@@ -40,13 +40,13 @@ try:
         os.path.join(base_dir, "data", "SP500_returns_1926-2013_pct.txt"),
     )
     blend_40_50_10 = read_to_list(
-        os.path.join(base_dir, "data", "40-50-10_returns_1926-2013_pct.txt"),
+        os.path.join(base_dir, "data", "S-B-C_blend_1926-2013_pct.txt"),
     )
     blend_50_50 = read_to_list(
-        os.path.join(base_dir, "data", "50-50_returns_1926-2013_pct.txt"),
+        os.path.join(base_dir, "data", "S-B_blend_1926-2013_pct.txt"),
     )
     infl_rate = read_to_list(
-        os.path.join(base_dir, "data", "inflation_rate_1926-2013_pct.txt"),
+        os.path.join(base_dir, "data", "annual_infl_rate_1926-2013_pct.txt"),
     )
 except IOError as e:
     print("Error reading file: {}".format(e))
@@ -174,7 +174,7 @@ def montecarlo(returns):
         lifespan_infl = []
         for i in lifespan:
             lifespan_returns.append(returns[i % len(returns)])
-            lifespan_infl.append(infl_rate[i % len])
+            lifespan_infl.append(infl_rate[i % len(infl_rate)])
 
         for index, i in enumerate(lifespan_returns):
             infl = lifespan_infl[index]
@@ -191,17 +191,23 @@ def montecarlo(returns):
                 bankrupt = "yes"
                 break
 
-            if bankrupt == "yes":
-                outcome.append(0)
-                bankrupt_count += 1
-            else:
-                case_count += 1
+        if bankrupt == "yes":
+            outcome.append(0)
+            bankrupt_count += 1
+        else:
+            outcome.append(investments)
 
-            return outcome, bankrupt_count
+        case_count += 1
+
+    return outcome, bankrupt_count
 
 
 def bankrupt_prob(outcome, bankrupt_count):
     total = len(outcome)
+    if total == 0:
+        print("Error: No outcomes generated.")
+        return None
+
     odds = round(100 * bankrupt_count / total, 1)
 
     print("\nInvestment type: {}".format(invest_type))

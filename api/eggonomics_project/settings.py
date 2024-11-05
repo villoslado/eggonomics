@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Adjusts to one level up
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "nestegg_app.apps.NesteggAppConfig",
+    "api.nestegg_app.apps.NesteggAppConfig",  # Updated the app path
 ]
 
 MIDDLEWARE = [
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "eggonomics_project.urls"
+ROOT_URLCONF = "api.eggonomics_project.urls"
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "eggonomics_project.wsgi.application"
+WSGI_APPLICATION = "api.eggonomics_project.wsgi.application"
 
 
 # Database
